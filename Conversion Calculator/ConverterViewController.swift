@@ -14,22 +14,47 @@ class ConverterViewController: UIViewController {
         super.viewDidLoad()
 
         setConversion(converterTypes[0])
+        
+        updateDisplay()
     }
     
     struct converter {
+        let id: Int
         let label: String
         let inputUnit: String
         let outputUnit: String
     }
     
-    let converterTypes = [converter(label: "fahrenheit to celcius", inputUnit: "°F", outputUnit: "°C"),
-                          converter(label: "celcius to fahrenheit", inputUnit: "°C", outputUnit: "°F"),
-                          converter(label: "miles to kilometers", inputUnit: "mi", outputUnit: "km"),
-                          converter(label: "kilometers to miles", inputUnit: "km", outputUnit: "mi")]
+    let converterTypes = [converter(id: 0, label: "fahrenheit to celcius", inputUnit: "°F", outputUnit: "°C"),
+                          converter(id: 1, label: "celcius to fahrenheit", inputUnit: "°C", outputUnit: "°F"),
+                          converter(id: 2, label: "miles to kilometers", inputUnit: "mi", outputUnit: "km"),
+                          converter(id: 3, label: "kilometers to miles", inputUnit: "km", outputUnit: "mi")]
+    
+    var inputString: String = ""
+    var converterID: Int = 0
     
     func setConversion(_ converterType: converter) -> Void {
-        outputDisplay.text = converterType.outputUnit
-        inputDisplay.text = converterType.inputUnit
+        converterID = converterType.id
+        
+        updateDisplay()
+    }
+    
+    func updateDisplay() {
+        inputDisplay.text = inputString + " " + converterTypes[converterID].inputUnit
+        
+        if inputString != "" {
+            if converterID == 0 {
+                outputDisplay.text = String(((Float(inputString) ?? 0) - 32) * 5 / 9) + " " + converterTypes[converterID].outputUnit
+            } else if converterID == 1 {
+                outputDisplay.text = String(((Float(inputString) ?? 0) * 9 / 5) + 32) + " " + converterTypes[converterID].outputUnit
+            } else if converterID == 2 {
+                outputDisplay.text = String((Float(inputString) ?? 0) * 1.609344) + " " + converterTypes[converterID].outputUnit
+            } else if converterID == 3 {
+                outputDisplay.text = String((Float(inputString) ?? 0) * 0.62137119) + " " + converterTypes[converterID].outputUnit
+            }
+        } else {
+            outputDisplay.text = converterTypes[converterID].outputUnit
+        }
     }
     
     @IBAction func ConverterButtonPressed(_ sender: Any) {
@@ -61,6 +86,68 @@ class ConverterViewController: UIViewController {
     @IBOutlet weak var outputDisplay: UITextField!
     
     @IBOutlet weak var inputDisplay: UITextField!
+    
+    @IBAction func clearInput(_ sender: Any) {
+        inputString = ""
+        updateDisplay()
+    }
+    
+    @IBAction func pressDecimal(_ sender: Any) {
+        if(inputString != "" && !inputString.contains(".")) {
+            inputString += "."
+            updateDisplay()
+        }
+    }
+    
+    @IBAction func press0(_ sender: Any) {
+        inputString += "0"
+        updateDisplay()
+    }
+    
+    @IBAction func press1(_ sender: Any) {
+        inputString += "1"
+        updateDisplay()
+    }
+    
+    @IBAction func press2(_ sender: Any) {
+        inputString += "2"
+        updateDisplay()
+    }
+    
+    @IBAction func press3(_ sender: Any) {
+        inputString += "3"
+        updateDisplay()
+    }
+    
+    @IBAction func press4(_ sender: Any) {
+        inputString += "4"
+        updateDisplay()
+    }
+    
+    @IBAction func press5(_ sender: Any) {
+        inputString += "5"
+        updateDisplay()
+    }
+    
+    @IBAction func press6(_ sender: Any) {
+        inputString += "6"
+        updateDisplay()
+    }
+    
+    @IBAction func press7(_ sender: Any) {
+        inputString += "7"
+        updateDisplay()
+    }
+    
+    @IBAction func press8(_ sender: Any) {
+        inputString += "8"
+        updateDisplay()
+    }
+    
+    @IBAction func press9(_ sender: Any) {
+        inputString += "9"
+        updateDisplay()
+    }
     
     /*
      // MARK: - Navigation
