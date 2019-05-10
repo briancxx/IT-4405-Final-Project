@@ -117,55 +117,73 @@ class ConverterViewController: UIViewController {
     }
     
     @IBAction func press0(_ sender: Any) {
-        if inputString != "" {
+        if inputString != "0" {
             inputString += "0"
             updateDisplay()
         }
     }
     
     @IBAction func press1(_ sender: Any) {
-        inputString += "1"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "1"
+            updateDisplay()
+        }
     }
     
     @IBAction func press2(_ sender: Any) {
-        inputString += "2"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "2"
+            updateDisplay()
+        }
     }
     
     @IBAction func press3(_ sender: Any) {
-        inputString += "3"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "3"
+            updateDisplay()
+        }
     }
     
     @IBAction func press4(_ sender: Any) {
-        inputString += "4"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "4"
+            updateDisplay()
+        }
     }
     
     @IBAction func press5(_ sender: Any) {
-        inputString += "5"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "5"
+            updateDisplay()
+        }
     }
     
     @IBAction func press6(_ sender: Any) {
-        inputString += "6"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "6"
+            updateDisplay()
+        }
     }
     
     @IBAction func press7(_ sender: Any) {
-        inputString += "7"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "7"
+            updateDisplay()
+        }
     }
     
     @IBAction func press8(_ sender: Any) {
-        inputString += "8"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "8"
+            updateDisplay()
+        }
     }
     
     @IBAction func press9(_ sender: Any) {
-        inputString += "9"
-        updateDisplay()
+        if inputString != "0" {
+            inputString += "9"
+            updateDisplay()
+        }
     }
     
     /*
