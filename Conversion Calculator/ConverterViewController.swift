@@ -50,13 +50,13 @@ class ConverterViewController: UIViewController {
         
         if inputString != "" {
             if converterID == 0 {
-                outputDisplay.text = String((inputNum - 32) * 5 / 9) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(round(((inputNum - 32) * 5 / 9) * 1000) / 1000) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 1 {
-                outputDisplay.text = String((inputNum * 9 / 5) + 32) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(round(((inputNum * 9 / 5) + 32) * 1000) / 1000) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 2 {
-                outputDisplay.text = String(inputNum * 1.609344) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(round(inputNum * 1.609344 * 1000) / 1000) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 3 {
-                outputDisplay.text = String(inputNum * 0.62137119) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(round(inputNum * 0.62137119 * 1000) / 1000) + " " + converterTypes[converterID].outputUnit
             }
         } else {
             outputDisplay.text = converterTypes[converterID].outputUnit
@@ -95,6 +95,7 @@ class ConverterViewController: UIViewController {
     
     @IBAction func clearInput(_ sender: Any) {
         inputString = ""
+        negative = false
         updateDisplay()
     }
     
@@ -116,8 +117,10 @@ class ConverterViewController: UIViewController {
     }
     
     @IBAction func press0(_ sender: Any) {
-        inputString += "0"
-        updateDisplay()
+        if inputString != "" {
+            inputString += "0"
+            updateDisplay()
+        }
     }
     
     @IBAction func press1(_ sender: Any) {
