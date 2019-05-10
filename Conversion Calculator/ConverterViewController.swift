@@ -12,6 +12,9 @@ class ConverterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        inputDisplay.isUserInteractionEnabled = false
+        outputDisplay.isUserInteractionEnabled = false
 
         setConversion(converterTypes[0])
         
@@ -32,6 +35,7 @@ class ConverterViewController: UIViewController {
     
     var inputString: String = ""
     var converterID: Int = 0
+    var negative: Bool = false
     
     func setConversion(_ converterType: converter) -> Void {
         converterID = converterType.id
@@ -40,17 +44,19 @@ class ConverterViewController: UIViewController {
     }
     
     func updateDisplay() {
-        inputDisplay.text = inputString + " " + converterTypes[converterID].inputUnit
+        inputDisplay.text = (negative ? "-" : "") + inputString + " " + converterTypes[converterID].inputUnit
+        
+        let inputNum: Float = (negative ? -1 : 1) * (Float(inputString) ?? 0)
         
         if inputString != "" {
             if converterID == 0 {
-                outputDisplay.text = String(((Float(inputString) ?? 0) - 32) * 5 / 9) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String((inputNum - 32) * 5 / 9) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 1 {
-                outputDisplay.text = String(((Float(inputString) ?? 0) * 9 / 5) + 32) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String((inputNum * 9 / 5) + 32) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 2 {
-                outputDisplay.text = String((Float(inputString) ?? 0) * 1.609344) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(inputNum * 1.609344) + " " + converterTypes[converterID].outputUnit
             } else if converterID == 3 {
-                outputDisplay.text = String((Float(inputString) ?? 0) * 0.62137119) + " " + converterTypes[converterID].outputUnit
+                outputDisplay.text = String(inputNum * 0.62137119) + " " + converterTypes[converterID].outputUnit
             }
         } else {
             outputDisplay.text = converterTypes[converterID].outputUnit
@@ -89,6 +95,16 @@ class ConverterViewController: UIViewController {
     
     @IBAction func clearInput(_ sender: Any) {
         inputString = ""
+        updateDisplay()
+    }
+    
+    @IBAction func changeSign(_ sender: Any) {
+        if negative == false {
+            negative = true
+        } else {
+            negative = false
+        }
+        
         updateDisplay()
     }
     
